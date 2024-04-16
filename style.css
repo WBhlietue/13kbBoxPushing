@@ -1,0 +1,27 @@
+*{
+    box-sizing: border-box;
+    user-select: none;
+    pointer-events: none;
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+#Main{
+   background-color: aliceblue;
+    width: 1920px;
+    height: 1080px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.element{
+    width: 100px;
+    height: 100px;
+    image-rendering: pixelated;
+    /* background-color: grey; */
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
