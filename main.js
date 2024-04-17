@@ -41,6 +41,7 @@ function Tween({
     }
     return { Kill: Kill, Reload: Reload, Reset: Reset };
 }
+var isWin = false
 var currentLevel = 0;
 const startWindow = Get("Start");
 const gameWindow = Get("Main");
@@ -396,17 +397,19 @@ function Check() {
     if (!inGaming) {
         return;
     }
-    var isWin = true;
+    var iw = true;
     boxPos.map((i) => {
         if (currentMap[i[0]][i[1]] != 3) {
-            isWin = false;
+            iw = false;
         }
     });
 
-    if (isWin) {
+    if (iw) {
         gameOver = true;
+        isWin = true
         st = 1;
         endWindow.style.display = "block";
+        fail.style.display = "none";
         SetPlayer("F");
     }
     for (let i = 0; i < potionPos.length; i++) {
@@ -427,7 +430,8 @@ function Check() {
 
 function ChangePower(value) {
     power += value;
-    if (power < 0) {
+    console.log(isWin);
+    if (power < 0 && !isWin) {
         power = 0;
         st = -1;
         SetPlayer("D");
@@ -522,7 +526,6 @@ function LoadLevel(level) {
         for (let i = 0; i < mS; i++) {
             for (let j = 0; j < mS; j++) {
                 let name = "";
-                console.log(currentMap[i][j]);
                 switch (currentMap[i][j]) {
                     case 0:
                         name = "g";
